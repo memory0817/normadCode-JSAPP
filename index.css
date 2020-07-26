@@ -1,0 +1,25 @@
+@font-face { font-family: NotoSerifKR; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body {
+    background-color: #ecf0f1;
+    font-family: NotoSerifKR;
+}
+.btn {
+    cursor: pointer;
+}
+h1 {
+    color:#34495e;
+    font-size:3rem;
+}
+
+.clicked {
+    color:#7f8c8d;
+}
+
+.form, .greetings {
+    display: none;
+}
+
+.showing {
+    display:block;
+}
