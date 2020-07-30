@@ -5,7 +5,28 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODOS_LS = "toDos";
 
-const toDos = [];
+// function filterFn(todo) {
+//     return todo.id === 1
+// } cleanToDos의 익명함수와 같다. 재활용성이 없는 함수는 익명함수로 대체하는게 좋다.
+
+let toDos = [];
+
+function deleteToDo(event) {
+    const btn = event.target;
+    const li = btn.parentNode;
+    // console.log(event.target.parentNode);
+    toDoList.removeChild(li);
+    const cleanToDos = toDos.filter(function(toDo){
+        //console.log(toDo);
+        //여기서 todo인자가 이해가 안갔는데 댓글에 따르면 그저 단순히 toDos라는 array안에 존재하는 어떤한 값들을 지칭하는 것이라고한다.
+        //toDo.id라함은 그 값들의 id를 지칭하는 것이다.
+        //console.log(toDo.id, li.id); //toDo.id는 number고 li.id는 string으로 인식돼어서 string을 숫자타입으로 변환해주어야한다.
+        return toDo.id !== parseInt(li.id);
+    });
+    //console.log(cleanToDos);
+    toDos = cleanToDos;
+    saveToDos();
+}
 
 function saveToDos() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
@@ -15,6 +36,7 @@ function paintToDo(text) {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     delBtn.innerText = "❌";
+    delBtn.addEventListener("click", deleteToDo);
     const span = document.createElement("span");
     const newId = toDos.length + 1;
     span.innerText = text;
